@@ -1,0 +1,66 @@
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: java-dot-io-dot-printstream-dot-println
+  when:
+    java.referenced:
+      pattern: java.io.PrintStream.println
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: star-out-star
+  when:
+    java.referenced:
+      pattern: "*out*"
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: system-dot-star
+  when:
+    java.referenced:
+      pattern: "System.*"
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: system-slash-dot-star
+  when:
+    java.referenced:
+      pattern: "System\\.*"
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: blog-post-demo-star-system-out-star
+  when:
+    java.referenced:
+      pattern: "*System.out*"
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: blog-post-demo-system-out-star
+  when:
+    java.referenced:
+      pattern: "System.out*"

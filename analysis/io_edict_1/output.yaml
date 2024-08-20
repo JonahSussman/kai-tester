@@ -1,0 +1,40 @@
+- name: kai/blog-post
+  description: Rules focused on demonstrating the capabilities of Kai
+  violations:
+    blog-post-demo-0001:
+      description: Avoid old-school input/output
+      category: mandatory
+      incidents:
+        - uri: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: " 1  package net.jsussman.ioedict;\n 2  \n 3  import java.io.FileInputStream;\n 4  import java.io.FileOutputStream;\n 5  import java.io.IOException;\n 6  \n 7  public class App {\n 8    public static void main(String[] args) {\n 9      System.out.println(\"Starting application!\");\n10  \n11      try (FileInputStream in = new FileInputStream(\"input.txt\");\n12          FileOutputStream out = new FileOutputStream(\"output.txt\")) {\n13  \n14        int c;\n15        while ((c = in.read()) != -1) {\n16          out.write(c);\n17        }\n18      } catch (IOException e) {\n19        e.printStackTrace();\n20      }\n21    }"
+          lineNumber: 11
+          variables:
+            file: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+            kind: Constructor
+            name: main
+            package: net.jsussman.ioedict
+        - uri: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: " 2  \n 3  import java.io.FileInputStream;\n 4  import java.io.FileOutputStream;\n 5  import java.io.IOException;\n 6  \n 7  public class App {\n 8    public static void main(String[] args) {\n 9      System.out.println(\"Starting application!\");\n10  \n11      try (FileInputStream in = new FileInputStream(\"input.txt\");\n12          FileOutputStream out = new FileOutputStream(\"output.txt\")) {\n13  \n14        int c;\n15        while ((c = in.read()) != -1) {\n16          out.write(c);\n17        }\n18      } catch (IOException e) {\n19        e.printStackTrace();\n20      }\n21    }\n22  }"
+          lineNumber: 12
+          variables:
+            file: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+            kind: Constructor
+            name: main
+            package: net.jsussman.ioedict
+      effort: 5
+    blog-post-demo-0002:
+      description: Avoid standard logging
+      category: mandatory
+      incidents:
+        - uri: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+          message: Standard logging should be avoided. Consider using SLF4J instead.
+          codeSnip: " 1  package net.jsussman.ioedict;\n 2  \n 3  import java.io.FileInputStream;\n 4  import java.io.FileOutputStream;\n 5  import java.io.IOException;\n 6  \n 7  public class App {\n 8    public static void main(String[] args) {\n 9      System.out.println(\"Starting application!\");\n10  \n11      try (FileInputStream in = new FileInputStream(\"input.txt\");\n12          FileOutputStream out = new FileOutputStream(\"output.txt\")) {\n13  \n14        int c;\n15        while ((c = in.read()) != -1) {\n16          out.write(c);\n17        }\n18      } catch (IOException e) {\n19        e.printStackTrace();"
+          lineNumber: 9
+          variables:
+            file: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+            kind: Method
+            name: main
+            package: net.jsussman.ioedict
+      effort: 5

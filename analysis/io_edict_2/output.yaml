@@ -1,0 +1,19 @@
+- name: kai/blog-post
+  description: Rules focused on demonstrating the capabilities of Kai
+  violations:
+    blog-post-demo-0002:
+      description: Avoid standard logging
+      category: mandatory
+      incidents:
+        - uri: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+          message: Standard logging should be avoided. Consider using SLF4J instead.
+          codeSnip: " 1  package net.jsussman.ioedict;\n 2  \n 3  import java.io.IOException;\n 4  import java.nio.file.Files;\n 5  import java.nio.file.Path;\n 6  import java.nio.file.Paths;\n 7  \n 8  public class App {\n 9    public static void main(String[] args) {\n10      System.out.println(\"Starting application!\");\n11  \n12      Path source = Paths.get(\"input.txt\");\n13      Path destination = Paths.get(\"output.txt\");\n14      try {\n15        Files.copy(source, destination);\n16      } catch (IOException e) {\n17        e.printStackTrace();\n18      }\n19    }\n20  }"
+          lineNumber: 10
+          variables:
+            file: file:///opt/input/source/src/main/java/net/jsussman/ioedict/App.java
+            kind: Method
+            name: main
+            package: net.jsussman.ioedict
+      effort: 5
+  unmatched:
+    - blog-post-demo-0001

@@ -1,0 +1,24 @@
+- category: mandatory
+  customVariables: []
+  description: Avoid old-school input/output
+  effort: 5
+  labels: [] # konveyor.io/source=java-ee and konveyor.io/source=quarkus
+  links: [] # objects have title and url keys
+  message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+  ruleID: blog-post-demo-0001
+  when:
+    java.referenced:
+      location: CONSTRUCTOR_CALL
+      pattern: java.io.*
+
+- category: mandatory
+  customVariables: []
+  description: Avoid standard logging
+  effort: 5
+  labels: []
+  links: []
+  message: Standard logging should be avoided. Consider using SLF4J instead.
+  ruleID: blog-post-demo-0002
+  when:
+    java.referenced:
+      pattern: "System*"

@@ -1,0 +1,67 @@
+- name: kai/blog-post
+  description: Rules focused on demonstrating the capabilities of Kai
+  violations:
+    blog-post-demo-0001:
+      description: Avoid old-school input/output
+      category: mandatory
+      incidents:
+        - uri: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: " 1  package io.konveyor.filer;\n 2  \n 3  import java.io.File;\n 4  import java.io.FileInputStream;\n 5  import java.io.FileOutputStream;\n 6  import java.io.IOException;\n 7  \n 8  public class App {\n 9      public static void main(String[] args) {\n10          File sourceDir = new File(\"source_directory\");\n11          File destDir = new File(\"destination_directory\");\n12          \n13          try {\n14              copyDirectoryLegacyIO(sourceDir, destDir);\n15              System.out.println(\"Directory copied successfully using legacy I/O.\");\n16          } catch (IOException e) {\n17              e.printStackTrace();\n18          }\n19      }\n20  "
+          lineNumber: 10
+          variables:
+            file: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+            kind: Constructor
+            name: main
+            package: io.konveyor.filer
+        - uri: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: " 1  package io.konveyor.filer;\n 2  \n 3  import java.io.File;\n 4  import java.io.FileInputStream;\n 5  import java.io.FileOutputStream;\n 6  import java.io.IOException;\n 7  \n 8  public class App {\n 9      public static void main(String[] args) {\n10          File sourceDir = new File(\"source_directory\");\n11          File destDir = new File(\"destination_directory\");\n12          \n13          try {\n14              copyDirectoryLegacyIO(sourceDir, destDir);\n15              System.out.println(\"Directory copied successfully using legacy I/O.\");\n16          } catch (IOException e) {\n17              e.printStackTrace();\n18          }\n19      }\n20  \n21      public static void copyDirectoryLegacyIO(File source, File destination) throws IOException {"
+          lineNumber: 11
+          variables:
+            file: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+            kind: Constructor
+            name: main
+            package: io.konveyor.filer
+        - uri: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: "19      }\n20  \n21      public static void copyDirectoryLegacyIO(File source, File destination) throws IOException {\n22          if (source.isDirectory()) {\n23              if (!destination.exists()) {\n24                  destination.mkdirs();  // Create destination directory if it doesn't exist\n25              }\n26              String[] children = source.list();\n27              if (children != null) {\n28                  for (String child : children) {\n29                      copyDirectoryLegacyIO(new File(source, child), new File(destination, child));\n30                  }\n31              }\n32          } else {\n33              copyFileLegacyIO(source, destination);\n34          }\n35      }\n36  \n37      private static void copyFileLegacyIO(File source, File destination) throws IOException {\n38          try (FileInputStream in = new FileInputStream(source);\n39               FileOutputStream out = new FileOutputStream(destination)) {"
+          lineNumber: 29
+          variables:
+            file: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+            kind: Constructor
+            name: copyDirectoryLegacyIO
+            package: io.konveyor.filer
+        - uri: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: "28                  for (String child : children) {\n29                      copyDirectoryLegacyIO(new File(source, child), new File(destination, child));\n30                  }\n31              }\n32          } else {\n33              copyFileLegacyIO(source, destination);\n34          }\n35      }\n36  \n37      private static void copyFileLegacyIO(File source, File destination) throws IOException {\n38          try (FileInputStream in = new FileInputStream(source);\n39               FileOutputStream out = new FileOutputStream(destination)) {\n40  \n41              byte[] buffer = new byte[1024];\n42              int bytesRead;\n43              while ((bytesRead = in.read(buffer)) != -1) {\n44                  out.write(buffer, 0, bytesRead);\n45              }\n46          }\n47      }\n48  }"
+          lineNumber: 38
+          variables:
+            file: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+            kind: Constructor
+            name: copyFileLegacyIO
+            package: io.konveyor.filer
+        - uri: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+          message: Legacy I/O should be avoided. Consider using NIO (java.nio) instead.
+          codeSnip: "29                      copyDirectoryLegacyIO(new File(source, child), new File(destination, child));\n30                  }\n31              }\n32          } else {\n33              copyFileLegacyIO(source, destination);\n34          }\n35      }\n36  \n37      private static void copyFileLegacyIO(File source, File destination) throws IOException {\n38          try (FileInputStream in = new FileInputStream(source);\n39               FileOutputStream out = new FileOutputStream(destination)) {\n40  \n41              byte[] buffer = new byte[1024];\n42              int bytesRead;\n43              while ((bytesRead = in.read(buffer)) != -1) {\n44                  out.write(buffer, 0, bytesRead);\n45              }\n46          }\n47      }\n48  }\n"
+          lineNumber: 39
+          variables:
+            file: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+            kind: Constructor
+            name: copyFileLegacyIO
+            package: io.konveyor.filer
+      effort: 5
+    blog-post-demo-0002:
+      description: Avoid standard logging
+      category: mandatory
+      incidents:
+        - uri: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+          message: Standard logging should be avoided. Consider using SLF4J instead.
+          codeSnip: " 5  import java.io.FileOutputStream;\n 6  import java.io.IOException;\n 7  \n 8  public class App {\n 9      public static void main(String[] args) {\n10          File sourceDir = new File(\"source_directory\");\n11          File destDir = new File(\"destination_directory\");\n12          \n13          try {\n14              copyDirectoryLegacyIO(sourceDir, destDir);\n15              System.out.println(\"Directory copied successfully using legacy I/O.\");\n16          } catch (IOException e) {\n17              e.printStackTrace();\n18          }\n19      }\n20  \n21      public static void copyDirectoryLegacyIO(File source, File destination) throws IOException {\n22          if (source.isDirectory()) {\n23              if (!destination.exists()) {\n24                  destination.mkdirs();  // Create destination directory if it doesn't exist\n25              }"
+          lineNumber: 15
+          variables:
+            file: file:///opt/input/source/src/main/java/io/konveyor/filer/App.java
+            kind: Method
+            name: main
+            package: io.konveyor.filer
+      effort: 5
